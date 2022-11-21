@@ -133,7 +133,7 @@ animations = [ {
 "frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
 "loop": true,
 "name": "Running",
-"speed": 8.0
+"speed": 7.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=28]

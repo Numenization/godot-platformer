@@ -18,27 +18,34 @@ func input(event: InputEvent) -> BaseState:
 	return null
 	
 func physics_process(delta: float) -> BaseState:
+	# If the player is no longer on the ground, enter the falling state
 	if !player.is_on_floor():
 		return fall_state
 	
-	var move = get_movement_input()
+	# Figure out what direction the player is inputting and flip our sprite accordingly
+	var move = player.get_movement_input()
 	if move < 0:
-		player.animations.flip_h = true
+		player.animations.flip_h = true	
 	elif move > 0:
 		player.animations.flip_h = false
 		
-	if move == 0:
-		return idle_state
+	# Apply gravity to player
 	player.velocity.y += player.gravity
-	player.velocity.x = move * player.move_speed
+		
+	# Move the player horizontally according to our input
+	# With the help of the player.clamp_movementspeed() function:
+	#  - The player will ramp up to move_speed using their acceleration
+	#  - And will slow down if they're over move_speed using their friction
+	var delta_x = 0
+	if player.velocity.x * move < player.move_speed:
+		delta_x = move * player.move_speed * player.acceleration
+	player.velocity.x = player.clamp_movement_speed(player.velocity.x + delta_x, player.friction)
+		
+	# Apply our velocity
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
 	
+	# If the player is not moving, return to idle state
+	if move == 0:
+		return idle_state
 		
 	return null
-
-func get_movement_input() -> int:
-	if Input.is_action_pressed("move_left"):
-		return -1
-	elif Input.is_action_pressed("move_right"):
-		return 1
-	return 0

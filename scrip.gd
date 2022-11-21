@@ -4,6 +4,10 @@ extends CanvasLayer
 func _ready():
 	pass # Replace with function body.
 
-func showmessage(text):
-	$Label.text = text
-	$Label.show()
+func show_state(text):
+	$StateLabel.text = text
+	$StateLabel.show()
+
+func show_velocity(text):
+	$VelocityLabel.text = text
+	$VelocityLabel.show()

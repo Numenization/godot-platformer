@@ -19,9 +19,14 @@ func physics_process(delta: float) -> BaseState:
 		
 	player.velocity.y += player.gravity
 	if move != 0:
-		player.velocity.x = move * player.move_speed
+		# Refer to horiz movement code in Move.gd
+		var delta_x = 0
+		if player.velocity.x * move < player.move_speed:
+			delta_x = move * player.move_speed * player.air_acceleration
+		player.velocity.x = player.clamp_movement_speed(player.velocity.x + delta_x, player.air_friction)
 	else:
 		player.velocity.x -= player.velocity.x * player.air_friction
+		
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
 	
 	if player.is_on_floor():
