@@ -13,7 +13,8 @@ func change_state(new_state: BaseState) -> void:
 
 func init(player: Player) -> void:
 	for child in get_children():
-		child.player = player
+		if child is BaseState:
+			child.player = player
 		
 	change_state(get_node(starting_state))
 	

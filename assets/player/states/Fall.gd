@@ -2,14 +2,25 @@ extends BaseState
 
 export (NodePath) var walk_node
 export (NodePath) var idle_node
+export (NodePath) var dash_node
 
 onready var walk_state: BaseState = get_node(walk_node)
 onready var idle_state: BaseState = get_node(idle_node)
+onready var dash_state: BaseState = get_node(dash_node)
 
 func enter() -> void:
 	.enter()
 	player.move_speed = player.walk_speed
 	
+func input(event: InputEvent) -> BaseState:
+	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
+		if $"../DashCooldown".time_left <= 0:
+			if $"../DashInput".time_left > 0 and player.facing_dir() == player.get_movement_input():
+				return dash_state
+			else:
+				$"../DashInput".start()	
+	return null
+
 func physics_process(delta: float) -> BaseState:
 	var move = get_movement_input()
 	if move < 0:

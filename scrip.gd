@@ -11,3 +11,15 @@ func show_state(text):
 func show_velocity(text):
 	$VelocityLabel.text = text
 	$VelocityLabel.show()
+
+func show_dash_input(text):
+	$DashInputLabel.text = text
+	$DashInputLabel.show()
+
+func show_dash_timer(text):
+	$DashTimerLabel.text = text
+	$DashTimerLabel.show()
+	
+func show_dash_cooldown(text):
+	$DashCooldownLabel.text = text
+	$DashCooldownLabel.show()
