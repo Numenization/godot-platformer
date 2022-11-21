@@ -20,6 +20,13 @@ func _ready() -> void:
 	states.init(self)
 	
 func _unhandled_input(event: InputEvent) -> void:
+	# This bit is just for debugging. Launches the player forward.
+	# Meant to test player movement damping.
+	var just_pressed = event.is_pressed() and not event.is_echo()
+	if Input.is_key_pressed(KEY_T) and just_pressed:
+		velocity.x += 300 * get_movement_input()
+		
+	
 	states.input(event)
 	
 func _physics_process(delta: float) -> void:
