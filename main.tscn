@@ -835,6 +835,8 @@ __meta__ = {
 }
 
 [node name="Zone" type="Area2D" parent="CameraZones"]
+collision_layer = 16
+collision_mask = 512
 __meta__ = {
 "_edit_lock_": true
 }
@@ -845,6 +847,8 @@ shape = SubResource( 49 )
 
 [node name="Zone2" type="Area2D" parent="CameraZones"]
 position = Vector2( 512, 0 )
+collision_layer = 16
+collision_mask = 512
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -856,6 +860,8 @@ shape = SubResource( 49 )
 
 [node name="Zone7" type="Area2D" parent="CameraZones"]
 position = Vector2( 512, 288 )
+collision_layer = 16
+collision_mask = 512
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -867,6 +873,8 @@ shape = SubResource( 49 )
 
 [node name="Zone3" type="Area2D" parent="CameraZones"]
 position = Vector2( -512, 0 )
+collision_layer = 16
+collision_mask = 512
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -878,6 +886,8 @@ shape = SubResource( 49 )
 
 [node name="Zone4" type="Area2D" parent="CameraZones"]
 position = Vector2( -512, -288 )
+collision_layer = 16
+collision_mask = 512
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -889,6 +899,8 @@ shape = SubResource( 49 )
 
 [node name="Zone5" type="Area2D" parent="CameraZones"]
 position = Vector2( 0, -288 )
+collision_layer = 16
+collision_mask = 512
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -900,6 +912,8 @@ shape = SubResource( 49 )
 
 [node name="Zone6" type="Area2D" parent="CameraZones"]
 position = Vector2( 512, -288 )
+collision_layer = 16
+collision_mask = 512
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -926,7 +940,7 @@ position = Vector2( -288, 192 )
 texture = ExtResource( 11 )
 
 [node name="AA12" parent="." instance=ExtResource( 12 )]
-position = Vector2( 130, 230 )
+position = Vector2( 166, 214 )
 __meta__ = {
 "_edit_group_": true
 }

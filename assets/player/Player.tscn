@@ -175,11 +175,12 @@ air_friction = 0.025
 dash_speed = 150
 dash_length = 0.2
 weapon_pickup_mask = 2
+camera_zone_mask = 16
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 27 )
 animation = "Idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -28,7 +28,7 @@ frames = SubResource( 2 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 rotation = 1.5708
-collision_layer = 4
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 3 )

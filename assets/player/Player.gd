@@ -19,6 +19,7 @@ export var dash_speed = 100
 export var dash_length = 0.5
 
 export (int, LAYERS_2D_PHYSICS) var weapon_pickup_mask
+export (int, LAYERS_2D_PHYSICS) var camera_zone_mask
 
 var velocity = Vector2.ZERO
 var move_speed = 60
@@ -54,7 +55,7 @@ func _process(delta: float) -> void:
 	
 func check_camera() -> void:
 	var physics = get_world_2d().get_direct_space_state()
-	var points = physics.intersect_point(position, 1, [], 2147483647, false, true)
+	var points = physics.intersect_point(position, 1, [], camera_zone_mask, false, true)
 	for point in points:
 		if point['collider'] != camera_zone:
 			camera_zone = point['collider']
@@ -62,10 +63,10 @@ func check_camera() -> void:
 			#print("entering camera zone: %s (%s,%s)" % [camera_zone, camera_zone.position.x, camera_zone.position.y])
 	
 # Check to see if we're touching a weapon we can pick up, and if so, pick it up		
-func pickup_weapon(weapon):
-	reparent(weapon, self)
-	weapon.pickup(self)
-	self.weapon = weapon
+func pickup_weapon(new_weapon):
+	reparent(new_weapon, self)
+	new_weapon.pickup(self)
+	weapon = new_weapon
 	
 func reparent(node, new_parent):
 	node.get_parent().call_deferred("remove_child", node)
