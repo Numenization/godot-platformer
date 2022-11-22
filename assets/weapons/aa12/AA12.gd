@@ -3,6 +3,8 @@ extends Weapon
 export var num_pellets : int = 6
 export var deg_spread : float = 0.1
 export var fire_rate : float = 150
+export var projectile_velocity : float = 300
+export var projectile_lifetime : float = 1
 
 export (PackedScene) var projectile_packed: PackedScene
 
@@ -38,7 +40,10 @@ func fire(target: Vector2):
 		projectile.position = $Barrel.get_global_transform().origin
 		projectile.direction = (target - projectile.position).normalized()
 		projectile.direction = projectile.direction.rotated(deg2rad(rng.randf_range(-deg_spread, deg_spread)))
+		projectile.speed = projectile_velocity
+		projectile.lifetime_timer.wait_time = projectile_lifetime
 		projectile.velocity = projectile.direction * projectile.speed
+		projectile.init()
 
 func _on_player_detector_body_entered(body):
 	player_detector_enter(body)

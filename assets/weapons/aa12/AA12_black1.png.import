@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/AA12_black1.png-01d4fc5c3ba9c7ecb3a309681cc2ee96.stex"
+path="res://.import/AA12_black1.png-56963709e5e9fb80497e595723032593.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/AA12_black1.png"
-dest_files=[ "res://.import/AA12_black1.png-01d4fc5c3ba9c7ecb3a309681cc2ee96.stex" ]
+source_file="res://assets/weapons/aa12/AA12_black1.png"
+dest_files=[ "res://.import/AA12_black1.png-56963709e5e9fb80497e595723032593.stex" ]
 
 [params]
 

@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Bullet",
 "language": "GDScript",
-"path": "res://assets/weapons/Bullet.gd"
+"path": "res://assets/weapons/projectiles/Bullet.gd"
 }, {
 "base": "BaseState",
 "class": "MoveState",

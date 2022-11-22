@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bullet_2.png-52c4dd9a56094ec67e6cadbe5e531acd.stex"
+path="res://.import/revolver1.png-d62822db2eed23af1875c779eec715f4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bullet_2.png"
-dest_files=[ "res://.import/bullet_2.png-52c4dd9a56094ec67e6cadbe5e531acd.stex" ]
+source_file="res://assets/weapons/revolver/revolver1.png"
+dest_files=[ "res://.import/revolver1.png-d62822db2eed23af1875c779eec715f4.stex" ]
 
 [params]
 

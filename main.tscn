@@ -7,11 +7,11 @@
 [ext_resource path="res://scrip.gd" type="Script" id=5]
 [ext_resource path="res://loop.gd" type="Script" id=6]
 [ext_resource path="res://assets/Stick_man.png" type="Texture" id=7]
-[ext_resource path="res://assets/AA12_black1.png" type="Texture" id=8]
-[ext_resource path="res://assets/bullet_2.png" type="Texture" id=9]
-[ext_resource path="res://assets/Bullet_1.png" type="Texture" id=10]
-[ext_resource path="res://assets/revolver1.png" type="Texture" id=11]
-[ext_resource path="res://assets/weapons/AA12.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/weapons/aa12/AA12_black1.png" type="Texture" id=8]
+[ext_resource path="res://assets/weapons/projectiles/bullet_2.png" type="Texture" id=9]
+[ext_resource path="res://assets/weapons/projectiles/Bullet_1.png" type="Texture" id=10]
+[ext_resource path="res://assets/weapons/revolver/revolver1.png" type="Texture" id=11]
+[ext_resource path="res://assets/weapons/aa12/AA12.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 0, 16, 16, 0, 16, 0, 16 )
@@ -940,9 +940,6 @@ position = Vector2( -288, 192 )
 texture = ExtResource( 11 )
 
 [node name="AA12" parent="." instance=ExtResource( 12 )]
-position = Vector2( 166, 214 )
-__meta__ = {
-"_edit_group_": true
-}
+position = Vector2( 175, 222 )
 on_ground = true
 deg_spread = 15.0
