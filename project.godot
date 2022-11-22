@@ -129,6 +129,7 @@ fire={
 2d_physics/layer_3="WeaponPlayerDetection"
 2d_physics/layer_4="Projectiles"
 2d_physics/layer_5="CameraZones"
+2d_physics/layer_6="HandZone"
 2d_physics/layer_10="Player"
 
 [physics]

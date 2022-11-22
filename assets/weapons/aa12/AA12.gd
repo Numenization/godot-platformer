@@ -10,6 +10,7 @@ export (PackedScene) var projectile_packed: PackedScene
 
 onready var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 onready var firing_timer : Timer = $FiringTimer
+onready var sprite : AnimatedSprite = $AnimatedSprite
 
 var firing = false
 
@@ -28,7 +29,6 @@ func input(event: InputEvent) -> void:
 		firing = false
 
 func physics_process(delta: float) -> void:
-	position = offset
 	if firing and firing_timer.time_left <= 0:
 		fire(get_global_mouse_position())
 	

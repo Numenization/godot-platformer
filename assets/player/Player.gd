@@ -17,9 +17,11 @@ export var min_jump_scaling = 0.3
 export var max_fall_speed = 200
 export var dash_speed = 100
 export var dash_length = 0.5
+export var weapon_hold_dist = 10
 
 export (int, LAYERS_2D_PHYSICS) var weapon_pickup_mask
 export (int, LAYERS_2D_PHYSICS) var camera_zone_mask
+export (int, LAYERS_2D_PHYSICS) var hand_zone_mask
 
 var velocity = Vector2.ZERO
 var move_speed = 60
@@ -28,6 +30,8 @@ var weapon = null
 
 onready var animations : AnimatedSprite = $AnimatedSprite
 onready var states = $StateManager
+onready var hand : Node2D = $Hand
+onready var hand_zone : Area2D = $HandZone
 onready var camera : Camera2D = get_node(camera_path)
 onready var jump_velocity : float = (2.0 * jump_height) / jump_time_to_peak
 onready var jump_gravity : float = (2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
@@ -45,6 +49,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	states.physics_process(delta)
 	check_camera()
+	update_hand()
 	if weapon:
 		weapon.physics_process(delta)
 	
@@ -86,6 +91,20 @@ func facing_dir() -> int:
 		return -1
 	else:
 		return 1
+		
+# Makes any held weapon rotate to face the cursor, and be held out 
+# weapon_hold_dist pixels away from the player
+func update_hand() -> void:
+	if weapon:
+		var mouse_pos = get_global_mouse_position()
+		var dir_to_mouse = (to_local(mouse_pos) - hand.position).normalized()
+		var hold_pos = hand.position + dir_to_mouse * weapon_hold_dist
+		weapon.position = hold_pos
+		if weapon.position.x > 0:
+			weapon.sprite.flip_v = false
+		else:
+			weapon.sprite.flip_v = true
+		weapon.look_at(mouse_pos)
 		
 func clamp_movement_speed(x: float, damping: float) -> float:
 	if x > move_speed:
