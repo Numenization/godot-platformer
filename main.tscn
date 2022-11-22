@@ -704,6 +704,7 @@ __meta__ = {
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 176, 240 )
+walk_speed = 100
 dash_speed = 250
 
 [node name="GooseMan" parent="." instance=ExtResource( 4 )]

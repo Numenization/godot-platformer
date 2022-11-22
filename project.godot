@@ -36,6 +36,10 @@ config/name="Platformer"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+gdscript/warnings/unused_argument=false
+
 [display]
 
 window/size/width=512

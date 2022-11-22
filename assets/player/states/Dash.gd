@@ -34,7 +34,7 @@ func physics_process(delta: float) -> BaseState:
 	player.velocity.y += player.gravity
 	player.velocity.x = dir * player.dash_speed
 	
-	player.move_and_slide(player.velocity, Vector2.UP)
+	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
 	
 	if dash_timer.time_left <= 0:
 		if player.is_on_floor():
