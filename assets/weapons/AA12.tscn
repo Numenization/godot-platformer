@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/weapons/AA12.gd" type="Script" id=1]
+[ext_resource path="res://assets/AA12_black1.png" type="Texture" id=2]
+[ext_resource path="res://assets/weapons/Bullet.tscn" type="PackedScene" id=3]
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=56]
+animations = [ {
+"frames": [ SubResource( 55 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=57]
+radius = 7.0
+height = 24.0
+
+[node name="AA12" type="RigidBody2D"]
+collision_layer = 2
+script = ExtResource( 1 )
+offset = Vector2( 16, 0 )
+projectile_packed = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 56 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 3, 0 )
+rotation = 1.5708
+shape = SubResource( 57 )
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2( 3, 0 )
+rotation = 1.5708
+shape = SubResource( 57 )
+
+[node name="Barrel" type="Node2D" parent="."]
+position = Vector2( 21, -2 )
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_Area2D_body_entered"]

@@ -18,9 +18,12 @@ export var max_fall_speed = 200
 export var dash_speed = 100
 export var dash_length = 0.5
 
+export (int, LAYERS_2D_PHYSICS) var weapon_pickup_mask
+
 var velocity = Vector2.ZERO
 var move_speed = 60
 var camera_zone = null
+var weapon = null
 
 onready var animations : AnimatedSprite = $AnimatedSprite
 onready var states = $StateManager
@@ -35,13 +38,19 @@ func _ready() -> void:
 	
 func _unhandled_input(event: InputEvent) -> void:
 	states.input(event)
+	if weapon:
+		weapon.input(event)
 	
 func _physics_process(delta: float) -> void:
 	states.physics_process(delta)
 	check_camera()
+	if weapon:
+		weapon.physics_process(delta)
 	
 func _process(delta: float) -> void:
 	states.process(delta)
+	if weapon:
+		weapon.process(delta)
 	
 func check_camera() -> void:
 	var physics = get_world_2d().get_direct_space_state()
@@ -51,6 +60,17 @@ func check_camera() -> void:
 			camera_zone = point['collider']
 			camera.position = camera_zone.position
 			#print("entering camera zone: %s (%s,%s)" % [camera_zone, camera_zone.position.x, camera_zone.position.y])
+	
+# Check to see if we're touching a weapon we can pick up, and if so, pick it up		
+func pickup_weapon(weapon):
+	reparent(weapon, self)
+	weapon.pickup(self)
+	self.weapon = weapon
+	
+func reparent(node, new_parent):
+	node.get_parent().call_deferred("remove_child", node)
+	new_parent.call_deferred("add_child", node)
+	node.set_deferred("owner", self)
 	
 func get_movement_input() -> int:
 	if Input.is_action_pressed("move_left"):
