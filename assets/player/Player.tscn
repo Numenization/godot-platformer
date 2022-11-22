@@ -249,3 +249,4 @@ one_shot = true
 one_shot = true
 
 [node name="MinJumpTime" type="Timer" parent="StateManager"]
+one_shot = true

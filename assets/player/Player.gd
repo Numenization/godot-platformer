@@ -13,6 +13,7 @@ export var air_friction = 0.1
 export var jump_height = 100
 export var jump_time_to_peak = 0.5
 export var jump_time_to_descent = 0.3
+export var min_jump_scaling = 0.3
 export var max_fall_speed = 200
 export var dash_speed = 100
 export var dash_length = 0.5

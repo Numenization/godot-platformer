@@ -9,11 +9,21 @@ onready var fall_state: BaseState = get_node(fall_node)
 onready var walk_state: BaseState = get_node(walk_node)
 onready var idle_state: BaseState = get_node(idle_node)
 onready var dash_state: BaseState = get_node(dash_node)
+onready var jump_timer: Timer     = get_node("../MinJumpTime")
+
+var jumping = false
 
 func enter() -> void:
 	.enter()
 	player.move_speed = player.walk_speed
 	player.velocity.y = -player.jump_velocity
+	jumping = true
+	jump_timer.wait_time = player.jump_time_to_peak * player.min_jump_scaling
+	jump_timer.start()
+	
+func exit() -> void:
+	jumping = false
+	jump_timer.stop()
 	
 func input(event: InputEvent) -> BaseState:
 	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
@@ -21,7 +31,7 @@ func input(event: InputEvent) -> BaseState:
 			if $"../DashInput".time_left > 0 and player.facing_dir() == player.get_movement_input():
 				return dash_state
 			else:
-				$"../DashInput".start()	
+				$"../DashInput".start()
 	return null
 	
 func physics_process(delta: float) -> BaseState:
@@ -31,7 +41,12 @@ func physics_process(delta: float) -> BaseState:
 	elif move > 0:
 		player.animations.flip_h = false
 		
-	var delta_y = player.jump_gravity * delta
+	if jumping and jump_timer.time_left <= 0:
+		if !Input.is_action_pressed("jump"):
+			jumping = false
+		
+	var gravity = player.jump_gravity if jumping else player.fall_gravity * 2
+	var delta_y = gravity * delta
 	player.velocity.y = player.clamp_fall_speed(player.velocity.y + delta_y, player.air_friction)
 	
 	if move != 0:
