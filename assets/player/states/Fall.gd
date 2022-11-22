@@ -28,7 +28,9 @@ func physics_process(delta: float) -> BaseState:
 	elif move > 0:
 		player.animations.flip_h = false
 		
-	player.velocity.y += player.gravity
+	var delta_y = player.fall_gravity * delta
+	player.velocity.y = player.clamp_fall_speed(player.velocity.y + delta_y, player.air_friction)
+	
 	if move != 0:
 		# Refer to horiz movement code in Move.gd
 		var delta_x = 0

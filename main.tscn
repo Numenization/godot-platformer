@@ -807,10 +807,13 @@ position = Vector2( 800, 384 )
 texture = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 176, 240 )
+position = Vector2( 224, 224 )
 camera_path = NodePath("../Camera2D")
 walk_speed = 100
-jump_force = 200
+jump_height = 90
+jump_time_to_peak = 0.6
+jump_time_to_descent = 0.5
+max_fall_speed = 300
 dash_speed = 250
 
 [node name="GooseMan" parent="." instance=ExtResource( 4 )]

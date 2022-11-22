@@ -31,7 +31,8 @@ func physics_process(delta: float) -> BaseState:
 		player.animations.flip_h = false
 		
 	# Apply gravity to player
-	player.velocity.y += player.gravity
+	var delta_y = player.fall_gravity * delta
+	player.velocity.y = player.clamp_fall_speed(player.velocity.y + delta_y, player.air_friction)
 		
 	# Move the player horizontally according to our input
 	# With the help of the player.clamp_movementspeed() function:

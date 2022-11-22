@@ -23,7 +23,9 @@ func input(event: InputEvent) -> BaseState:
 	return null
 	
 func physics_process(delta: float) -> BaseState:
-	player.velocity.y += player.gravity
+	var delta_y = player.fall_gravity * delta
+	player.velocity.y = player.clamp_fall_speed(player.velocity.y + delta_y, player.air_friction)
+	
 	player.velocity.x -= player.velocity.x * player.friction
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
 	

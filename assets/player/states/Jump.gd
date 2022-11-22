@@ -13,7 +13,7 @@ onready var dash_state: BaseState = get_node(dash_node)
 func enter() -> void:
 	.enter()
 	player.move_speed = player.walk_speed
-	player.velocity.y = -player.jump_force
+	player.velocity.y = -player.jump_velocity
 	
 func input(event: InputEvent) -> BaseState:
 	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
@@ -31,7 +31,9 @@ func physics_process(delta: float) -> BaseState:
 	elif move > 0:
 		player.animations.flip_h = false
 		
-	player.velocity.y += player.gravity
+	var delta_y = player.jump_gravity * delta
+	player.velocity.y = player.clamp_fall_speed(player.velocity.y + delta_y, player.air_friction)
+	
 	if move != 0:
 		# Refer to horiz movement code in Move.gd
 		var delta_x = 0

@@ -171,14 +171,12 @@ walk_speed = 80
 sprint_speed = 120
 friction = 0.3
 air_friction = 0.025
-jump_force = 150
 dash_speed = 150
 dash_length = 0.2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 27 )
 animation = "Idle"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -249,3 +247,5 @@ one_shot = true
 
 [node name="DashTimer" type="Timer" parent="StateManager"]
 one_shot = true
+
+[node name="MinJumpTime" type="Timer" parent="StateManager"]
