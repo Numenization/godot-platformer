@@ -45,6 +45,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	states.input(event)
 	if weapon:
 		weapon.input(event)
+	if event.is_action_pressed("drop_weapon"):
+		drop_weapon()
 	
 func _physics_process(delta: float) -> void:
 	states.physics_process(delta)
@@ -73,10 +75,18 @@ func pickup_weapon(new_weapon):
 	new_weapon.pickup(self)
 	weapon = new_weapon
 	
+func drop_weapon() -> void:
+	if weapon:
+		var mouse_pos = get_global_mouse_position()
+		var dir_to_mouse = (mouse_pos - position).normalized()
+		reparent(weapon, get_parent())
+		weapon.drop(position + dir_to_mouse * 50)
+		weapon = null
+	
 func reparent(node, new_parent):
 	node.get_parent().call_deferred("remove_child", node)
 	new_parent.call_deferred("add_child", node)
-	node.set_deferred("owner", self)
+	node.set_deferred("owner", new_parent)
 	
 func get_movement_input() -> int:
 	if Input.is_action_pressed("move_left"):
